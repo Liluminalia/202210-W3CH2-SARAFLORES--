@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    background-color: rgb(52, 52, 52);
+}
+
+header,
+footer {
+    flex: 1 0 auto;
+    color: rgb(52, 52, 52);
+    background-color: rgb(53, 129, 204);
+    display: flex;
+    padding: 5%;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    color: rgb(53, 129, 204);
+    background-color: rgb(52, 52, 52);
+    flex: 10 0 auto;
+    margin: 1rem;
+    padding: 1rem;
+}
+h2,
+li,
+ul {
+    text-decoration: none;
+    text-transform: uppercase;
+    list-style-type: none;
+    font-family: sans-serif;
+}
