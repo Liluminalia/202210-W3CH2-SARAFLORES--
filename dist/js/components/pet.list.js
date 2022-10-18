@@ -17,9 +17,9 @@ export class PetList extends Component {
             var _a;
             (_a = document
                 .querySelector('form')) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', this.handleAdd.bind(this));
-            document.querySelectorAll('eraser').forEach((item) => item.addEventListener('click', () => {
-                this.handleEraser.bind(this);
-            }));
+            document
+                .querySelectorAll('.eraser')
+                .forEach((item) => item.addEventListener('click', this.handlerEraser.bind(this)));
         }, 100);
     }
     createTemplate() {
@@ -31,7 +31,7 @@ export class PetList extends Component {
                 <ul>`;
         this.pets.forEach((item) => {
             template += `
-            <li> id:${item.id} / ${item.name} / ${item.race} - ${item.kind} --  -- ${item.parents}
+            <li> id:${item.id} - ${item.name} - ${item.race} - ${item.kind} --  -- ${item.parents}
             <span class="eraser" data-id="${item.id}">🗑️</span>
             </li>`;
         });
@@ -55,9 +55,9 @@ export class PetList extends Component {
         this.pets.push(new Pet(name, kind, race, parents));
         this.manageComponent();
     }
-    handleEraser(ev) {
-        const deletedId = ev.target.dataset.id;
-        this.pets = this.pets.filter((item) => item.id !== +deletedId);
+    handlerEraser(ev) {
+        const eraserId = ev.target.dataset.id;
+        this.pets = this.pets.filter((item) => item.id !== +eraserId);
         this.manageComponent();
     }
 }
