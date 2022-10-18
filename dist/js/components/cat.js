@@ -7,11 +7,11 @@ export class Cat {
         this.directory = './cat.html';
     }
     createTemplate() {
-        let template = `
+        const template = `
         
             <section>
                 <h2>NERON</h2>
-                 <img src="./dist/img/cat.jpg" alt="foto de un gato gris">
+                 <img src="./dist/img/cat.jpg" alt="foto de un gato egipcio">
                 
             </section>
         
