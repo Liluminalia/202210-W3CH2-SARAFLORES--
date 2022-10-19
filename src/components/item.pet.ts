@@ -40,6 +40,7 @@ export class ItemPet extends Component {
             <span>${this.item.race}</span>
             <span>${this.item.kind}</span>
             <span> ${this.item.isAdopted ? this.item.parents : ''}</span>
+            <span> ${this.item.isAdopted ? this.item.message : ''}</span>
             <span class="button" id="i${this.item.id}">🗑️</span>
         </li>`;
     }
