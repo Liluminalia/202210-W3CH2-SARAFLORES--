@@ -1,4 +1,4 @@
-export abstract class Component {
+export class Component {
     render(selector: string, template: string) {
         if (!selector) return false;
         const element = document.querySelector(selector);
