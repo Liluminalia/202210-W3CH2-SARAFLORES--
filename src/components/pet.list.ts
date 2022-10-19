@@ -60,8 +60,10 @@ export class PetList extends Component {
             .value;
         const parents = (document.querySelector('#parents') as HTMLInputElement)
             .value;
+        const message = (document.querySelector('#message') as HTMLInputElement)
+            .value;
 
-        this.pets.push(new Pet(name, kind, race, parents));
+        this.pets.push(new Pet(name, kind, race, parents, message));
         this.storeService.setStore(this.pets);
         this.manageComponent();
     }

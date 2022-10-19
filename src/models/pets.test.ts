@@ -8,13 +8,15 @@ describe('Given the class Pet', () => {
         const race = 'street cat';
         const parents = 'sara';
         const isAdopted = false;
-        const pet = new Pet(name, kind, race, parents);
+        const message = 'gracias por adoptar!';
+        const pet = new Pet(name, kind, race, parents, message);
         const id = pet.id;
         const expectedResult = {
             name,
             kind,
             race,
             parents,
+            message,
             isAdopted,
             id,
         };
