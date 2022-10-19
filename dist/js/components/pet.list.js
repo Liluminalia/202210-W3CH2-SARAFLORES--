@@ -62,8 +62,9 @@ export class PetList extends Component {
     handlerAdopted(changeID) {
         const i = this.pets.findIndex((item) => item.id === changeID);
         this.pets[i].isAdopted = !this.pets[i].isAdopted;
-        if (this.pets[i].isAdopted)
+        if (this.pets[i].isAdopted) {
             this.pets[i].parents;
+        }
         this.storeService.setStore(this.pets);
     }
 }
