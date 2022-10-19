@@ -1,26 +1,27 @@
 import { PETS } from '../models/data.js';
 import { Pet } from '../models/pets.js';
+import { Store } from '../services/storage.js';
 import { AddPet } from './add.pet.js';
+import { ItemPet } from './item.pet.js';
 import { Component } from './component.js';
 export class PetList extends Component {
     constructor(selector) {
         super();
         this.selector = selector;
-        this.pets = [...PETS];
+        this.storeService = new Store('Pets');
+        if (this.storeService.getStore().length === 0) {
+            this.pets = [...PETS];
+            this.storeService.setStore(this.pets);
+        }
+        else {
+            this.pets = this.storeService.getStore();
+        }
         this.manageComponent();
     }
     manageComponent() {
         this.template = this.createTemplate();
         this.render(this.selector, this.template);
-        new AddPet('slot#add-pet');
-        setTimeout(() => {
-            var _a;
-            (_a = document
-                .querySelector('form')) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', this.handleAdd.bind(this));
-            document
-                .querySelectorAll('.eraser')
-                .forEach((item) => item.addEventListener('click', this.handlerEraser.bind(this)));
-        }, 100);
+        new AddPet('slot#add-task', this.handleAdd.bind(this));
     }
     createTemplate() {
         let template = `
@@ -30,10 +31,7 @@ export class PetList extends Component {
                 <slot id="add-pet"></slot>
                 <ul>`;
         this.pets.forEach((item) => {
-            template += `
-            <li> id:${item.id} - ${item.name} - ${item.race} - ${item.kind} --  -- ${item.parents}
-            <span class="eraser" data-id="${item.id}">🗑️</span>
-            </li>`;
+            template += new ItemPet('', item, this.handlerEraser.bind(this), this.handlerAdopted.bind(this)).template;
         });
         template += `
         </ul>
@@ -53,11 +51,19 @@ export class PetList extends Component {
         const parents = document.querySelector('#parents')
             .value;
         this.pets.push(new Pet(name, kind, race, parents));
+        this.storeService.setStore(this.pets);
         this.manageComponent();
     }
-    handlerEraser(ev) {
-        const eraserId = ev.target.dataset.id;
-        this.pets = this.pets.filter((item) => item.id !== +eraserId);
+    handlerEraser(eraserId) {
+        this.pets = this.pets.filter((item) => item.id !== eraserId);
+        this.storeService.setStore(this.pets);
         this.manageComponent();
+    }
+    handlerAdopted(changeID) {
+        const i = this.pets.findIndex((item) => item.id === changeID);
+        this.pets[i].isAdopted = !this.pets[i].isAdopted;
+        if (this.pets[i].isAdopted)
+            this.pets[i].parents;
+        this.storeService.setStore(this.pets);
     }
 }
