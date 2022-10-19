@@ -23,7 +23,7 @@ export class PetList extends Component {
     manageComponent() {
         this.template = this.createTemplate();
         this.render(this.selector, this.template);
-        new AddPet('slot#add-task', this.handleAdd.bind(this));
+        new AddPet('slot#add-pet', this.handleAdd.bind(this));
     }
     createTemplate() {
         let template = `

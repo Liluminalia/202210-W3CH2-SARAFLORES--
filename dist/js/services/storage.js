@@ -1,8 +1,6 @@
 export class Store {
-    // store: string;
     constructor(store) {
         this.store = store;
-        // this.store = store
     }
     getStore() {
         const dataString = localStorage.getItem(this.store);
