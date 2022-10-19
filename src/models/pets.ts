@@ -1,10 +1,3 @@
-export interface IPets {
-    name: string;
-    kind: string;
-    race: string;
-    isAdopted: boolean;
-    parents: string;
-}
 export class Pet {
     id: number;
     isAdopted: boolean;

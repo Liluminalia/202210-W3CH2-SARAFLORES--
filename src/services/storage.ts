@@ -1,8 +1,5 @@
 export class Store<T> {
-    // store: string;
-    constructor(public store: string) {
-        // this.store = store
-    }
+    constructor(public store: string) {}
 
     getStore(): Array<T> {
         const dataString = localStorage.getItem(this.store);
